@@ -1,5 +1,19 @@
 function createMenuData(data) {
+  var actualData = [];
 
+       data.forEach(item => {
+  
+          var itemValue   = item.split("/")
+          var actualDataItem = actualData.find(p => p["title"]===itemValue[0]);
+  
+          if (actualDataItem!=null)
+              actualDataItem.data.push(itemValue[1]);
+          else
+               if(itemValue[1]!=undefined )
+                  actualData.push({title : itemValue[0],data:[itemValue[1]]});
+       });
+       
+        return actualData; 
 }
 
 describe("menu Data Generator", () => {
